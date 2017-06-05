@@ -16,7 +16,7 @@
     "require": {
         "php": ">=7.0.0",
         "verbi/yii2-drupal8-application": "*",
-        "xsonline/hostingControlPanel": "*"
+        "xsonline/hosting-control-panel": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
