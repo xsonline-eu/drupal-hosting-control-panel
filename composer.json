@@ -1,0 +1,30 @@
+{
+    "name": "xsonline/hosting-control-panel",
+    "type": "drupal-module",
+    "description": "",
+    "keywords": ["web hosting", "servers"],
+    "homepage": "https://github.com/xsonline/hosting",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Philip Verbist",
+            "email": "philip.verbist@gmail.com",
+            "homepage": "http://www.xsonline.eu",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "verbi/yii2-drupal8-application": "*",
+        "xsonline/hostingControlPanel": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "classmap": ["Mobile_Detect.php"],
+        "psr-0": {
+            "Detection": "namespaced/"
+        }
+    }
+}
