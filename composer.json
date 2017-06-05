@@ -22,7 +22,6 @@
         "phpunit/phpunit": "*"
     },
     "autoload": {
-        "classmap": ["Mobile_Detect.php"],
         "psr-0": {
             "Detection": "namespaced/"
         }
