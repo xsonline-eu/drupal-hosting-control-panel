@@ -22,8 +22,8 @@
         "phpunit/phpunit": "*"
     },
     "autoload": {
-        "psr-0": {
-            "Detection": "namespaced/"
-        }
+        "psr-4": {
+            "Drupal\\hosting_control_panel\\": "src/"
+	}
     }
 }
