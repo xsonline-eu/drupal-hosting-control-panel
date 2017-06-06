@@ -1,7 +1,7 @@
 hosting_control_panel:
     path: /hosting
     defaults:
-        _controller: Drupal\hosting_control_panel\Controller\DefaultController::hello
+        _controller: Drupal\hosting_control_panel\Controller\DefaultController::index
     requirements:
         _permission: 'access content'
 route_callbacks:
