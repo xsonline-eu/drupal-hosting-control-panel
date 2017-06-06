@@ -20,13 +20,13 @@ class Routes {
     $routes = array();
     // Declares a single route under the name 'example.content'.
     // Returns an array of Route objects. 
-    $routes['hosting_control_panel.hello'] = new Route(
+    $routes['hosting_control_panel.default'] = new Route(
       // Path to attach this route to:
-      '/hello',
+      '/hosting',
       // Route defaults:
       array(
-        '_controller' => '\Drupal\hosting_control_panel\Controller\DefaultController::hello',
-        '_title' => 'Hello'
+        '_controller' => '\Drupal\hosting_control_panel\Controller\DefaultController::index',
+        '_title' => 'Index'
       ),
       // Route requirements:
       array(
