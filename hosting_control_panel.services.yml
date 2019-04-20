@@ -1,0 +1,88 @@
+services:
+  commerce_cart_api.normalizer.price:
+    class: Drupal\hosting_control_panel\Normalizer\PriceItemNormalizer
+    tags:
+      - { name: normalizer, priority: 9 }
+  commerce_cart_api.normalizer.field_item:
+    class: Drupal\hosting_control_panel\Normalizer\FieldItemNormalizer
+    tags:
+      - { name: normalizer, priority: 8 }
+  commerce_cart_api.normalizer.field:
+    class: Drupal\hosting_control_panel\Normalizer\FieldNormalizer
+    tags:
+      - { name: normalizer, priority: 9 }
+  commerce_cart_api.normalizer.order_items:
+    class: Drupal\hosting_control_panel\Normalizer\OrderItemsNormalizer
+    arguments: ['@entity.repository']
+    tags:
+      - { name: normalizer, priority: 9 }
+  commerce_cart_api.normalizer.purchased_entity:
+    class: Drupal\hosting_control_panel\Normalizer\PurchasedEntityNormalizer
+    arguments: ['@entity.repository']
+    tags:
+      - { name: normalizer, priority: 9 }
+
+  access_check.cart_api:
+    class: Drupal\hosting_control_panel\Access\ApiAccessCheck
+    arguments: ['@commerce_cart.cart_provider']
+    tags:
+      - { name: access_check, applies_to: _cart_api }
+
+  entity.query.external:
+    class: Drupal\hosting_control_panel\Entity\Query\External\QueryFactory
+    arguments: ['@plugin.manager.hosting_control_panel_entity_storage_client', '@hosting_control_panel_entity.storage_client.response_decoder_factory', '@http_client', '@entity.manager']
+    tags:
+      - { name: backend_overridable }
+  entity_type.query.external:
+    class: Drupal\hosting_control_panel\Entity\Query\External\EntityTypeQueryFactory
+    arguments: ['@plugin.manager.hosting_control_panel_entity_storage_client', '@hosting_control_panel_entity.storage_client.response_decoder_factory', '@http_client', '@entity.manager']
+    tags:
+      - { name: backend_overridable }
+  hosting_control_panel_entity.storage_client.response_decoder_factory:
+    class: Drupal\hosting_control_panel\ResponseDecoderFactory
+    tags:
+      - { name: service_collector, tag: hosting_control_panel_entity_response_decoder, call: addDecoder }
+  hosting_control_panel_entity.storage_client.config_factory:
+    class: Drupal\hosting_control_panel\HostingControlPanelConfigFactory
+  
+  hosting_control_panel_entity.storage_client.entity_type_storage:
+    class: Drupal\hosting_control_panel\HostingControlPanelEntityTypeStorage
+    arguments:
+        - '@config.storage.active'
+        - '@cache.config'
+
+  hosting_control_panel_entity.storage_client.entity_type_config_storage:
+    class: Drupal\hosting_control_panel\HostingControlPanelEntityTypeConfigStorage
+    arguments:
+#        - '@config.storage.active'
+        - '@hosting_control_panel_entity.storage_client.entity_type_config_rest_storage'
+        - '@cache.config'
+        
+  hosting_control_panel_entity.storage_client.entity_type_config_rest_storage:
+    class: Drupal\hosting_control_panel\HostingControlPanelEntityTypeConfigRestStorage
+    
+    
+  hosting_control_panel_entity_type.storage_client.config_factory:
+    class: Drupal\hosting_control_panel\HostingControlPanelEntityTypeConfigFactory
+#    arguments: ['@plugin.manager.hosting_control_panel_entity_storage_client', '@hosting_control_panel_entity.storage_client.response_decoder_factory', '@config.manager']
+    arguments: ['@hosting_control_panel_entity.storage_client.entity_type_config_storage', '@event_dispatcher', '@config.typed']
+
+##  StorageInterface $storage, EventDispatcherInterface $event_dispatcher, TypedConfigManagerInterface $typed_config
+  
+  plugin.manager.hosting_control_panel_entity_storage_client:
+    class: Drupal\hosting_control_panel\HostingControlPanelEntityStorageClientManager
+    parent: default_plugin_manager
+  entity.hosting_control_panel.routes:
+    class: Drupal\hosting_control_panel\Routing\HostingControlPanelEntityRoutes
+    arguments: ['@entity.manager']
+  access_check.hosting_control_panel_entities.add:
+    class: Drupal\hosting_control_panel\Access\HostingControlPanelEntityAddAccessCheck
+    arguments: ['@entity.manager']
+    tags:
+      - { name: access_check, applies_to: _hosting_control_panel_entity_add_access }
+
+
+#  commerce_cart_api.routing_alter_subscriber:
+#    class: Drupal\hosting_control_panel\EventSubscriber\RoutingAlterSubscriber
+#    tags:
+#      - { name: 'event_subscriber' }

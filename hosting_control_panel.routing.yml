@@ -4,5 +4,70 @@ hosting_control_panel:
         _controller: Drupal\hosting_control_panel\Controller\DefaultController::index
     requirements:
         _permission: 'access content'
+        
+        
+#route_callbacks:
+#    - '\Drupal\hosting_control_panel\Routing\HostingControlPanelEntityRoutes::routes'
+
+
+
+
+hosting_control_panel_entities.add_page:
+  path: '/hosting-control-panel-entity/add'
+  defaults:
+    _title: 'Add hosting control panel entity'
+    _controller: '\Drupal\hosting_control_panel\Controller\HostingControlPanelEntityController::addPage'
+  options:
+    _hosting_control_panel_entity_operation_route: TRUE
+  requirements:
+    _hosting_control_panel_entity_add_access: 'hosting_control_panel_entity'
+
+hosting_control_panel_entity.add:
+  path: '/hosting-control-panel-entity/add/{hosting_entity_type}'
+  defaults:
+    _controller: '\Drupal\hosting_control_panel\Controller\HostingControlPanelEntityController::add'
+    _title_callback: '\Drupal\hosting_control_panel\Controller\HostingControlPanelEntityController::addPageTitle'
+  requirements:
+    _hosting_control_panel_entity_add_access: 'hosting_control_panel_entity:{hosting_entity_type}'
+  options:
+    _hosting_control_panel_entity_operation_route: TRUE
+    parameters:
+      hosting_entity_type:
+        with_config_overrides: TRUE
+
+entity.hosting_entity_type.collection:
+  path: '/admin/structure/hosting-control-panel-entity-types'
+  defaults:
+    _controller: '\Drupal\Core\Entity\Controller\EntityListController::listing'
+    entity_type: 'hosting_entity_type'
+    _title: 'hosting control panel entity types'
+  requirements:
+    _permission: 'administer external entity types'
+
+hosting_control_panel_entity.type_add:
+  path: '/admin/structure/hosting-control-panel-entity-types/add'
+  defaults:
+    _entity_form: 'hosting_entity_type.add'
+    _title: 'Add hosting control panel entity type'
+  requirements:
+    _permission: 'administer external entity types'
+
+entity.hosting_entity_type.edit_form:
+  path: '/admin/structure/hosting-control-panel-entity-types/manage/{hosting_entity_type}'
+  defaults:
+    _entity_form: 'hosting_entity_type.edit'
+  requirements:
+    _permission: 'administer hosting control panel entity types'
+
+entity.hosting_entity_type.delete_form:
+  path: '/admin/structure/hosting-control-panel-entity-types/manage/{hosting_entity_type}/delete'
+  defaults:
+    _entity_form: 'hosting_entity_type.delete'
+    _title: 'Delete'
+  requirements:
+    _entity_access: 'hosting_entity_type.delete'
+
 route_callbacks:
-    - '\Drupal\hosting_control_panel\Routing\Routes::routes'
+#  - 'Drupal\hosting_control_panel\Routing\ExternalEntityRoutes::routes'
+#  - 'entity.hosting_control_panel_entities.routes::routes'
+  - 'entity.hosting_control_panel.routes::routes'

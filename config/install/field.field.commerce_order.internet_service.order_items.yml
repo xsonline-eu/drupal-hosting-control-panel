@@ -1,0 +1,24 @@
+uuid: 5f43591d-f643-4b5c-b2e4-3f630835c88c
+langcode: nl
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.internet_service
+    - field.storage.commerce_order.order_items
+  enforced:
+    module:
+      - hosting_control_panel
+id: commerce_order.internet_service.order_items
+field_name: order_items
+entity_type: commerce_order
+bundle: internet_service
+label: 'Order items'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: null
+settings:
+  handler: 'default:commerce_order_item'
+  handler_settings: {  }
+field_type: entity_reference

@@ -1,0 +1,51 @@
+uuid: a71045fc-c977-4535-9574-4a866e96b441
+langcode: nl
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.internet_service
+    - field.field.commerce_product.internet_service.body
+    - field.field.commerce_product.internet_service.stores
+    - field.field.commerce_product.internet_service.variations
+  module:
+    - commerce_product
+    - text
+  enforced:
+    module:
+      - hosting_control_panel
+id: commerce_product.internet_service.default
+targetEntityType: commerce_product
+bundle: internet_service
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: -4
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  title:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  variations:
+    type: commerce_add_to_cart
+    weight: 10
+    label: above
+    settings:
+      combine: true
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  langcode: true
+  stores: true
+  uid: true

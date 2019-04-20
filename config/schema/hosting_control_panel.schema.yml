@@ -1,0 +1,33 @@
+# Schema for the Inline Entity Reference module display settings.
+
+field.widget.settings.hosting_control_panel_form_multi_step:
+  type: mapping
+  label: 'Hosting Control Panel Form display format settings'
+  mapping:
+    form_mode:
+      type: string
+      label: "Form mode"
+    override_labels:
+      type: boolean
+      label: "Override labels"
+    label_singular:
+      type: string
+      label: "Label (singular)"
+    label_plural:
+      type: string
+      label: "Label (plural)"
+    allow_new:
+      type: boolean
+      label: "Allow new"
+    allow_existing:
+      type: boolean
+      label: "Allow existing"
+    match_operator:
+      type: string
+      label: "Match operator"
+    collapsible:
+      type: boolean
+      label: "Collapsible"
+    collapsed:
+      type: boolean
+      label: "Collapsed by default"

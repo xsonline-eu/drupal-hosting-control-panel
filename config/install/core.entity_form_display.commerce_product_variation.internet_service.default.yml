@@ -1,0 +1,89 @@
+uuid: 9d03f18d-d751-425d-9804-dfd1e6ea4808
+langcode: nl
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.internet_service
+    - field.field.commerce_product_variation.internet_service.billing_schedule
+    - field.field.commerce_product_variation.internet_service.subscription_type
+  module:
+    - commerce
+    - commerce_price
+    - field_layout
+    - layout_discovery
+  enforced:
+    module:
+      - hosting_control_panel
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: commerce_product_variation.internet_service.default
+targetEntityType: commerce_product_variation
+bundle: internet_service
+mode: default
+content:
+  avatax_tax_code:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  billing_schedule:
+    type: options_select
+    weight: 91
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  list_price:
+    type: commerce_list_price
+    weight: -1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  price:
+    type: commerce_price_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  qty_increments:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  sku:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 90
+    region: content
+    third_party_settings: {  }
+  subscription_type:
+    type: commerce_plugin_select
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  uid: true

@@ -1,0 +1,19 @@
+uuid: 35ea8974-2e8e-48b2-81f4-094b21fd1f48
+langcode: nl
+status: true
+dependencies:
+  enforced:
+    module:
+      - hosting_control_panel
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: digital_goods
+label: 'Recurring (Internet Service)'
+id: recurring_internet_service
+purchasableEntityType: commerce_product_variation
+#purchasableEntityType: commerce_product_variation
+orderType: internet_service
+traits: {  }
+locked: false

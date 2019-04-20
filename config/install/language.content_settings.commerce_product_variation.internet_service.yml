@@ -1,0 +1,20 @@
+#uuid: c3eb446a-e6f9-43ad-a232-b52a1e999fbd
+#langcode: nl
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.internet_service
+#  module:
+#    - content_translation
+  enforced:
+    module:
+      - hosting_control_panel
+#third_party_settings:
+#  content_translation:
+#    enabled: true
+id: commerce_product_variation.internet_service
+#target_entity_type_id: commerce_product_variation
+target_entity_type_id: commerce_product_variation
+target_bundle: internet_service
+#default_langcode: site_default
+#language_alterable: true

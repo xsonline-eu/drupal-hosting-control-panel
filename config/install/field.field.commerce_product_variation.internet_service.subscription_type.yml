@@ -1,0 +1,24 @@
+uuid: dd395450-6499-4866-977e-76d07aa3e8c6
+langcode: nl
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.internet_service
+    - field.storage.commerce_product_variation.subscription_type
+  module:
+    - commerce
+  enforced:
+    module:
+      - hosting_control_panel
+id: commerce_product_variation.internet_service.subscription_type
+field_name: subscription_type
+entity_type: commerce_product_variation
+bundle: internet_service
+label: 'Subscription type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: null
+settings: {  }
+field_type: 'commerce_plugin_item:commerce_subscription_type'

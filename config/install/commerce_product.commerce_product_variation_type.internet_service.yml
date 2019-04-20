@@ -1,0 +1,14 @@
+uuid: ef0c4080-16ad-4525-997b-ec251c741caa
+langcode: nl
+status: true
+dependencies:
+  enforced:
+    module:
+      - hosting_control_panel
+id: internet_service
+label: 'Internet Service'
+orderItemType: recurring_internet_service
+generateTitle: true
+traits:
+  - purchasable_entity_subscription
+locked: false

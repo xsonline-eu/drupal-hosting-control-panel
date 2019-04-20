@@ -1,0 +1,96 @@
+<?php
+use Drupal\hosting_control_panel\Plugin\TaxableType\commerce_tax\InternetServiceTaxableType;
+use \Drupal\hosting_control_panel\Form\ProductVariationTypeForm;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for 'commerce_order_item_type_form'.
+ */
+function drupal_hosting_control_panel_form_commerce_order_item_type_form_alter(array &$form, FormStateInterface $form_state) {
+  /** @var \Drupal\commerce_order\Entity\OrderTypeInterface $order_item_type */
+  $order_item_type = $form_state->getFormObject()->getEntity();
+
+//  $form['commerce_tax'] = [
+//    '#type' => 'container',
+//    '#weight' => 5,
+//  ];
+  $form['commerce_tax']['taxable_type'] = [
+    '#type' => 'select',
+    '#title' => t('Taxable type'),
+    '#options' => InternetServiceTaxableType::getLabels(),
+    '#default_value' => $order_item_type->getThirdPartySetting('commerce_tax', 'taxable_type', InternetServiceTaxableType::getDefault()),
+    '#required' => TRUE,
+  ];
+//  $form['actions']['submit']['#submit'][] = 'commerce_tax_order_item_type_form_submit';
+}
+
+
+/*
+ * Prepares variables for product variation templates.
+ *
+ * Default template: commerce-product-variation.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing rendered fields.
+ *   - attributes: HTML attributes for the containing element.
+ */
+//function drupal_hosting_control_panel_preprocess_commerce_product_variation(array &$variables) {
+//  /** @var Drupal\commerce_product\Entity\ProductVariationInterface $product_variation */
+//  $product_variation = $variables['elements']['#commerce_product_variation'];
+//  $product = $product_variation->getProduct();
+//
+//  $variables['product_variation_entity'] = $product_variation;
+//  $variables['product_url'] = '';
+//  if ($product && !$product->isNew()) {
+//    $variables['product_url'] = $product->toUrl();
+//  }
+//
+//  $variables['product_variation'] = [];
+//  foreach (Element::children($variables['elements']) as $key) {
+//    $variables['product_variation'][$key] = $variables['elements'][$key];
+//  }
+//}
+
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function hosting_control_panel_entity_type_alter(array &$entity_types) {
+//      die(print_r($entity_types['commerce_product_variation_type']->getFormClass('add'),true));
+
+    $entity_types['commerce_product_variation_type']->setFormClass('add', '\\' . ProductVariationTypeForm::class);
+    $entity_types['commerce_product_variation_type']->setFormClass('edit', '\\' . ProductVariationTypeForm::class);
+    
+//    die($entity_types['commerce_order_item']);
+//    die($entity_types['commerce_order_item']->getHandlerClass('views_data'));
+    $entity_types['commerce_order_item']->setHandlerClass('views_data', '\\' . Drupal\hosting_control_panel\Data\OrderItemViewsData::class);
+    
+//    die(print_r($entity_types,true));
+    
+//    die(print_r($entity_types['commerce_product_variation_type']->getFormClass('edit'),true));
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ *
+ * - Changes the label of the purchased_entity field to the label of the
+ *   target type (e.g. 'Product variation').
+ * - Forbids editing the purchased_entity once the order item is no longer new.
+ */
+//function hosting_control_panel_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+//  $field_definition = $context['items']->getFieldDefinition();
+//  $field_name = $field_definition->getName();
+//  $entity_type = $field_definition->getTargetEntityTypeId();
+//  if ($field_name == 'purchased_entity'
+//          && $entity_type == 'commerce_order_item'
+//          && $entity_type == 'commerce_order_item'
+//          ) {
+//    if (!empty($element['target_id']['#target_type'])) {
+//      $target_type = \Drupal::service('entity_type.manager')->getDefinition($element['target_id']['#target_type']);
+//      $element['target_id']['#title'] = $target_type->getLabel();
+//      if (!$context['items']->getEntity()->isNew()) {
+//        $element['#disabled'] = TRUE;
+//      }
+//    }
+//  }
+//}

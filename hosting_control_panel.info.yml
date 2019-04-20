@@ -4,4 +4,13 @@ description: Manage your hosting packages
 package: Hosting
 core: 8.x
 dependencies:
+  - commerce
+  - commerce:commerce_price
   - commerce:commerce_order
+  - commerce:commerce_payment
+  - state_machine
+  - advancedqueue
+  - commerce_recurring
+#  - commerce:commerce_cart
+#  - serialization
+#  - rest

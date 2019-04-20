@@ -1,0 +1,15 @@
+uuid: fb7a3964-354a-4125-97c7-7363f87fb3da
+langcode: nl
+status: true
+dependencies:
+  enforced:
+    module:
+      - hosting_control_panel
+id: internet_service
+label: 'Internet Service'
+description: ''
+variationType: internet_service
+multipleVariations: true
+injectVariationFields: true
+traits: {  }
+locked: false

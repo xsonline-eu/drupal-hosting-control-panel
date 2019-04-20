@@ -1,0 +1,25 @@
+uuid: a9c97ba4-189d-41ae-8440-6fac75f4b67d
+langcode: nl
+status: true
+dependencies:
+  enforced:
+    module:
+      - hosting_control_panel
+id: monthly
+label: Monthly
+displayLabel: Monthly
+billingType: prepaid
+retrySchedule:
+  - 1
+  - 3
+  - 5
+  - 2
+  - 2
+unpaidSubscriptionState: canceled
+plugin: rolling
+configuration:
+  interval:
+    number: 1
+    unit: month
+prorater: proportional
+proraterConfiguration: {  }

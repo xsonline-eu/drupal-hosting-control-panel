@@ -2,8 +2,51 @@
 
 namespace Drupal\hosting_control_panel\Controller;
 
-class DefaultController {
+use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+//use Drupal\my_api\MyClient;
 
+/**
+ * Class DefaultController.
+ *
+ * @package Drupal\hosting_control_panel\Controller
+ */
+class DefaultController extends ControllerBase {
+
+    /**
+     * Drupal\my_api\MyClient definition.
+     *
+     * @var \Drupal\my_api\MyClient
+     */
+    protected $myClient;
+    
+//   /**
+//    * {@inheritdoc}
+//    */
+//   public function __construct(MyClient $my_client) {
+//     $this->myClient = $my_client;
+//   }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function create(ContainerInterface $container) {
+        return new static(
+          $container->get('my_api.client')
+        );
+    }
+
+    /**
+     * Content.
+     *
+     * @return array
+     *   Return array.
+     */
+    public function content() {
+      $this->myClient->request();
+      return [];
+    }
+    
     public function index() {
         defined('YII_DEBUG') or define('YII_DEBUG', true);
         defined('YII_ENV') or define('YII_ENV', 'dev');
